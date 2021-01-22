@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        .res-header{
+            width: 100%;
+            height: 25%;
+            display: block;
+            position: absolute;
+            background-color: #585858;
+        }
+    </style>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion des utilisateurs</title>
+    <link rel="icon" href="../img/social.png" type="image/icon type">
+    
+</head>
+<body style="height: 100%;">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+          
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <li><a class="navbar-brand" href="/index">Accueil</a></li>
+                <li>
+                    <a class="navbar-brand" href="/reservations">Réservations</a>
+                    </li>
+                    <li>
+                        <a class="navbar-brand" href="/social">Réseaux sociaux</a></li>
+                        <li>
+                            <a class="navbar-brand" href="/users">Utilisateurs</a></li>
+                            <li>
+                              <a class="btn btn-danger" href="/login">Logout</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <br><br>
+    <div class="container">
+        <center>
+
+            <h2>Gestion des utilisateurs</h2>
+        </center>
+        <br><br><br>
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col" hidden>#</th>
+                <th scope="col">Nom</th>
+                <th scope="col">Prénom</th>
+                <th scope="col">email</th>
+                <th scope="col">Mot de passe</th>
+                <th scope="col">Modifier</th>
+                <th scope="col">Supprimer</th>
+
+              </tr>
+            </thead>
+            <tbody>
+                <% for(var i=0; i<users.length;i++) { %>
+                    <tr>
+                        <td hidden><%= users[i]._id %> </td>
+                        <td ><%= users[i].nom %> </td>
+                        <td ><%= users[i].prenom %> </td>
+                        <td ><%= users[i].email %> </td>
+                        <td ><%= users[i].password %> </td>
+                        <td ><button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalUpdate<%= i %>">Update</button> </td>
+                        <td ><a class="btn btn-danger" href="/deleteUser/<%=users[i]._id  %> ">Supprimer</a> </td>
+                    </tr>
+                           <!-- Modal modification -->
+<div class="modal fade" id="modalUpdate<%= i %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Mettre à jour utilisateur</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form class="row g-3 needs-validation" method="POST" action="/updateUser/<%=users[i]._id %> ">
+                <div class="col-md-4">
+                  <label for="validationCustom01" class="form-label">Nom</label>
+                  <input type="text" class="form-control" id="nom" placeholder="Nom" name="nom" value="<%= users[i].nom %> " required>
+                  <div class="valid-feedback">
+                    Looks good!
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <label for="validationCustom02" class="form-label">Prénom</label>
+                  <input type="text" class="form-control" id="prenom" placeholder="prénom" name="prenom" value="<%= users[i].prenom %>" required>
+                  <div class="valid-feedback">
+                    Looks good!
+                  </div>
+                </div>
+                
+                <div class="col-md-4">
+                  <label for="validationCustomUsername" class="form-label">email</label>
+                  <div class="input-group has-validation">
+                    <span class="input-group-text" id="inputGroupPrepend">@</span>
+                    <input type="email" class="form-control" id="email" aria-describedby="inputGroupPrepend" placeholder="exemple@gmail.com" name="email" value="<%= users[i].email %>" required>
+                    <div class="invalid-feedback">
+                      Please choose a username.
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                    <label for="validationCustomUsername" class="form-label">Mot de passe</label>
+                    <div class="input-group has-validation">
+                      <input type="password" class="form-control" id="cin" aria-describedby="inputGroupPrepend"  placeholder="password" name="password" value="<%= users[i].password %>" required>
+                      <div class="invalid-feedback">
+                        Please choose a username.
+                      </div>
+                    </div>
+                  </div>
+
+                
+                <div class="col-12">
+                </div>
+                <div class="col-12">
+                  <button class="btn btn-primary" type="submit">Mettre à jour maintenant</button>
+                </div>
+              </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+                    <% } %>
+            </tbody>
+          </table>
+          <center><button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalAjout">Ajouter utilisateur</button></center>
+          <!-- Modal Ajout -->
+<div class="modal fade" id="modalAjout" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Ajouter un utilisateur</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form class="row g-3 needs-validation" method="POST" action="/addUser">
+                <div class="col-md-4">
+                  <label for="validationCustom01" class="form-label">Nom</label>
+                  <input type="text" class="form-control" id="nom" placeholder="Nom" name="nom" required>
+                  <div class="valid-feedback">
+                    Looks good!
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <label for="validationCustom02" class="form-label">Prénom</label>
+                  <input type="text" class="form-control" id="prenom" placeholder="prénom" name="prenom" required>
+                  <div class="valid-feedback">
+                    Looks good!
+                  </div>
+                </div>
+                
+                <div class="col-md-4">
+                  <label for="validationCustomUsername" class="form-label">email</label>
+                  <div class="input-group has-validation">
+                    <span class="input-group-text" id="inputGroupPrepend">@</span>
+                    <input type="email" class="form-control" id="email" aria-describedby="inputGroupPrepend" placeholder="exemple@gmail.com" name="email" required>
+                    <div class="invalid-feedback">
+                      Please choose a username.
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                    <label for="validationCustomUsername" class="form-label">Mot de passe</label>
+                    <div class="input-group has-validation">
+                      <input type="password" class="form-control" id="password" aria-describedby="inputGroupPrepend" placeholder="password" name="password" required>
+                      <div class="invalid-feedback">
+                        Please choose a username.
+                      </div>
+                    </div>
+                  </div>
+    
+                
+                <div class="col-12">
+                </div>
+                <div class="col-12">
+                  <button class="btn btn-primary" type="submit">Ajouter</button>
+                </div>
+              </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    
+      </div>
+</body>
+</html>
