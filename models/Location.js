@@ -7,21 +7,13 @@ ObjectId.prototype.valueOf = function () {
 };
 const LocationSchema = new Schema({
   client: { type: Schema.Types.ObjectId, ref: "Client" },
-  prenom: {
+  dateDeb: {
     type: String,
     required: true,
   },
-  cin: {
+  dateFin: {
     type: String,
     required: true,
-  },
-  adresse: {
-    type: String,
-    required: true,
-  },
-  tel: {
-    type: String,
-    required: ture,
   },
 });
 module.exports = Location = mongoose.model("Location", LocationSchema);
