@@ -23,7 +23,7 @@ const CarSchema = new Schema({
     required: true,
   },
   annee: {
-    type: Number,
+    type: String,
     required: true,
   },
   carburant: {

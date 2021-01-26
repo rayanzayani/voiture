@@ -11,6 +11,10 @@ carsRoute.route("/cars").get((req, res) => {
   });
 });
 
+carsRoute.route("/ajouterVoiture").get((req, res) => {
+  res.render("ajouterVoiture");
+});
+
 /** Ajouter reservation **/
 carsRoute.route("/addCar").post((req, res) => {
   const newCar = new Car({
@@ -26,6 +30,11 @@ carsRoute.route("/addCar").post((req, res) => {
   } catch (err) {
     console.log("error!");
   }
+  Car.find({}, function (err, cars) {
+    res.render("voitures", {
+      cars: cars,
+    });
+  });
 });
 
 /** mise à jour reservation **/
