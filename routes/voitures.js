@@ -30,17 +30,13 @@ carsRoute.route("/addCar").post((req, res) => {
   } catch (err) {
     console.log("error!");
   }
-  Car.find({}, function (err, cars) {
-    res.render("voitures", {
-      cars: cars,
-    });
-  });
+  res.redirect("ajouterVoiture");
 });
 
 /** mise à jour reservation **/
 carsRoute.route("/updateCar/:id").post(function (req, res) {
   let id = req.params.id;
-  User.findById(id, function (err, data) {
+  Car.findById(id, function (err, data) {
     data.marque = req.body.marque;
     data.modele = req.body.modele;
     data.couleur = req.body.couleur;

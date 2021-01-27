@@ -236,52 +236,30 @@
 
                     <div class="row">
 
-                        <form class="user" action="/addCar" method="POST">
+                        <form class="user" action="/addUser" method="POST">
                             <div class="form-group row">
                                 <div class="col-sm-6 mb-3 mb-sm-0">
-                                    <label for="Marque">Marque</label>
-                                    <select name="marque" id="marque" class="form-control" required>
-                                        <option value="volvo">Volvo</option>
-                                        <option value="saab">BMW</option>
-                                        <option value="mercedes">Mercedes</option>
-                                        <option value="audi">Audi</option>
-                                      </select>
+                                    <label for="matricule">Nom</label>
+                                    <input type="text" class="form-control form-control-user" id="nom" name="nom"
+                                        placeholder="nom" required>
                                 </div>
                                 <div class="col-sm-6 mb-3 mb-sm-0">
-                                    <label for="Modèle">Modèle</label>
-                                    <select name="modele" id="modele" class="form-control" required>
-                                        <option value="sport">sport</option>
-                                        <option value="4X4">4X4</option>
-                                        <option value="economique">economique</option>
-                                      </select>
+                                    <label for="année">Prenom</label>
+                                    <input type="text" class="form-control form-control-user" id="prenom" name="prenom"
+                                        placeholder="prenom" required>
                                 </div>
                                 <div class="col-sm-6 mb-3 mb-sm-0">
-                                    <label for="Couleur">Couleur</label>
-                                    <select name="couleur" id="couleur" class="form-control" required>
-                                        <option value="noire">noire</option>
-                                        <option value="rouge">rouge</option>
-                                        <option value="gris">gris</option>
-                                      </select>
+                                    <label for="carburant">Email</label>
+                                    <input type="text" class="form-control form-control-user" id="email" name="email"
+                                        placeholder="email" required>
                                 </div>
                                 <div class="col-sm-6 mb-3 mb-sm-0">
-                                    <label for="matricule">Matricule</label>
-                                    <input type="text" class="form-control form-control-user" id="matricule" name="matricule"
-                                        placeholder="Matricule" required>
-                                </div>
-                                <div class="col-sm-6 mb-3 mb-sm-0">
-                                    <label for="année">Année</label>
-                                    <input type="text" class="form-control form-control-user" id="annee" name="annee"
-                                        placeholder="année" required>
-                                </div>
-                                <div class="col-sm-6 mb-3 mb-sm-0">
-                                    <label for="carburant">carburant</label>
-                                    <select name="carburant" id="carburant" class="form-control" required>
-                                        <option value="essence">essence</option>
-                                        <option value="gasoil">gasoil</option>
-                                      </select>
+                                    <label for="carburant">Mot de passe</label>
+                                    <input type="password" class="form-control form-control-user" id="password" name="password"
+                                        placeholder="password" required>
                                 </div>
                             </div>
-                            <button class="btn btn-primary btn-user btn-block">Ajouter voiture</button>
+                            <button class="btn btn-success btn-user btn-block">Ajouter utilisateur</button>
                         </form>
                         
                         

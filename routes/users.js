@@ -10,6 +10,11 @@ usersRoute.route("/users").get((req, res) => {
     });
   });
 });
+usersRoute.route("/ajouterUser").get((req, res) => {
+  User.find({}, function (err, users) {
+    res.render("ajouterUser");
+  });
+});
 
 /** Ajouter reservation **/
 usersRoute.route("/addUser").post((req, res) => {

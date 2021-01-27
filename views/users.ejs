@@ -2,7 +2,9 @@
 <html lang="en">
 
 <head>
-
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+    
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -84,7 +86,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Opérations disponibles :</h6>
                         <a class="collapse-item" href="/ajouterUser">Ajouter utilisateur</a>
-                        <a class="collapse-item" href="/users">Lister utilisateurs</a>
+                        <a class="collapse-item" href="/utilisateurs">Lister utilisateurs</a>
                     </div>
                 </div>
             </li>
@@ -236,53 +238,77 @@
 
                     <div class="row">
 
-                        <form class="user" action="/addCar" method="POST">
-                            <div class="form-group row">
-                                <div class="col-sm-6 mb-3 mb-sm-0">
-                                    <label for="Marque">Marque</label>
-                                    <select name="marque" id="marque" class="form-control" required>
-                                        <option value="volvo">Volvo</option>
-                                        <option value="saab">BMW</option>
-                                        <option value="mercedes">Mercedes</option>
-                                        <option value="audi">Audi</option>
-                                      </select>
-                                </div>
-                                <div class="col-sm-6 mb-3 mb-sm-0">
-                                    <label for="Modèle">Modèle</label>
-                                    <select name="modele" id="modele" class="form-control" required>
-                                        <option value="sport">sport</option>
-                                        <option value="4X4">4X4</option>
-                                        <option value="economique">economique</option>
-                                      </select>
-                                </div>
-                                <div class="col-sm-6 mb-3 mb-sm-0">
-                                    <label for="Couleur">Couleur</label>
-                                    <select name="couleur" id="couleur" class="form-control" required>
-                                        <option value="noire">noire</option>
-                                        <option value="rouge">rouge</option>
-                                        <option value="gris">gris</option>
-                                      </select>
-                                </div>
-                                <div class="col-sm-6 mb-3 mb-sm-0">
-                                    <label for="matricule">Matricule</label>
-                                    <input type="text" class="form-control form-control-user" id="matricule" name="matricule"
-                                        placeholder="Matricule" required>
-                                </div>
-                                <div class="col-sm-6 mb-3 mb-sm-0">
-                                    <label for="année">Année</label>
-                                    <input type="text" class="form-control form-control-user" id="annee" name="annee"
-                                        placeholder="année" required>
-                                </div>
-                                <div class="col-sm-6 mb-3 mb-sm-0">
-                                    <label for="carburant">carburant</label>
-                                    <select name="carburant" id="carburant" class="form-control" required>
-                                        <option value="essence">essence</option>
-                                        <option value="gasoil">gasoil</option>
-                                      </select>
-                                </div>
-                            </div>
-                            <button class="btn btn-primary btn-user btn-block">Ajouter voiture</button>
-                        </form>
+                        <div class="table-responsive">
+                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <thead>
+                                    <tr>
+                                        <th>Nom</th>
+                                        <th>Prénom</th>
+                                        <th>Email</th>
+                                        <th>Mot de passe</th>
+                                        <th>Modifier</th>
+                                        <th>Supprimer</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% for(var i=0; i<users.length;i++) { %>
+                                        <tr>
+                                            <td hidden><%= users[i]._id %> </td>
+                                            <td ><%= users[i].nom %> </td>
+                                            <td ><%= users[i].prenom %> </td>
+                                            <td ><%= users[i].email %> </td>
+                                            <td ><%= users[i].password %> </td>
+                                            <td ><button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalUpdate<%= i %>">Update</button> </td>
+                                            <td ><a class="btn btn-danger" href="/deleteUser/<%=users[i]._id  %> ">Supprimer</a> </td>
+                                        </tr>
+
+                                           <!-- Modal modification -->
+<div class="modal fade" id="modalUpdate<%= i %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Mettre à jour voiture</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form class="user" action="/updateUser/<%= users[i]._id %> " method="POST">
+                <div class="form-group row">
+                    <div class="col-sm-6 mb-3 mb-sm-0">
+                        <label for="matricule">Nom</label>
+                        <input type="text" class="form-control form-control-user" id="nom" name="nom"
+                            placeholder="nom" required>
+                    </div>
+                    <div class="col-sm-6 mb-3 mb-sm-0">
+                        <label for="année">Prenom</label>
+                        <input type="text" class="form-control form-control-user" id="prenom" name="prenom"
+                            placeholder="prenom" required>
+                    </div>
+                    <div class="col-sm-6 mb-3 mb-sm-0">
+                        <label for="carburant">Email</label>
+                        <input type="text" class="form-control form-control-user" id="email" name="email"
+                            placeholder="email" required>
+                    </div>
+                    <div class="col-sm-6 mb-3 mb-sm-0">
+                        <label for="carburant">Mot de passe</label>
+                        <input type="password" class="form-control form-control-user" id="password" name="password"
+                            placeholder="password" required>
+                    </div>
+                </div>
+                <button class="btn btn-success btn-user btn-block">Mettre à jour utilisateur</button>
+            </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+                                        <% } %> 
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
                         
                         
                     </div>
