@@ -2,9 +2,7 @@
 <html lang="en">
 
 <head>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
-    
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -86,10 +84,11 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Opérations disponibles :</h6>
                         <a class="collapse-item" href="/ajouterUser">Ajouter utilisateur</a>
-                        <a class="collapse-item" href="/utilisateurs">Lister utilisateurs</a>
+                        <a class="collapse-item" href="/users">Lister utilisateurs</a>
                     </div>
                 </div>
             </li>
+
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
                     aria-expanded="true" aria-controls="collapseUtilities">
@@ -253,84 +252,36 @@
 
                     <div class="row">
 
-                        <div class="table-responsive">
-                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                <thead>
-                                    <tr>
-                                        <th>Nom</th>
-                                        <th>Prénom</th>
-                                        <th>CIN</th>
-                                        <th>Adresse</th>
-                                        <th>Tél</th>
-                                        <th>Modifier</th>
-                                        <th>Supprimer</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <% for(var i=0; i<clients.length;i++) { %>
-                                        <tr>
-                                            <td hidden><%= clients[i]._id %> </td>
-                                            <td ><%= clients[i].nom %> </td>
-                                            <td ><%= clients[i].prenom %> </td>
-                                            <td ><%= clients[i].cin %> </td>
-                                            <td ><%= clients[i].adresse %> </td>
-                                            <td ><%= clients[i].tel %> </td>
-                                            <td ><button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalUpdate<%= i %>">Update</button> </td>
-                                            <td ><a class="btn btn-danger" href="/deleteClient/<%=clients[i]._id  %> ">Supprimer</a> </td>
-                                        </tr>
-
-                                           <!-- Modal modification -->
-<div class="modal fade" id="modalUpdate<%= i %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Mettre à jour client</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-            <form class="user" action="/updateClient/<%= clients[i]._id %> " method="POST">
-                <div class="form-group row">
-                    <div class="col-sm-6 mb-3 mb-sm-0">
-                        <label for="matricule">Nom</label>
-                        <input type="text" class="form-control form-control-user" id="nom" name="nom" value="<%= clients[i].nom %> "
-                            placeholder="nom" required>
-                    </div>
-                    <div class="col-sm-6 mb-3 mb-sm-0">
-                        <label for="année">Prenom</label>
-                        <input type="text" class="form-control form-control-user" id="prenom" name="prenom" value="<%= clients[i].prenom %>"
-                            placeholder="prenom" required>
-                    </div>
-                    <div class="col-sm-6 mb-3 mb-sm-0">
-                        <label for="carburant">CIN</label>
-                        <input type="text" class="form-control form-control-user" id="cin" name="cin" value="<%= clients[i].cin %> "
-                            placeholder="cin" required>
-                    </div>
-                    <div class="col-sm-6 mb-3 mb-sm-0">
-                        <label for="carburant">Adresse</label>
-                        <input type="text" class="form-control form-control-user" id="adresse" name="adresse" value="<%= clients[i].adresse %> "
-                            placeholder="adresse" required>
-                    </div>
-                    <div class="col-sm-6 mb-3 mb-sm-0">
-                        <label for="carburant">Tél</label>
-                        <input type="text" class="form-control form-control-user" id="tel" name="tel" value="<%= clients[i].tel %> "
-                            placeholder="tel" required>
-                    </div>
-                </div>
-                <button class="btn btn-success btn-user btn-block">Mettre à jour client</button>
-            </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        </div>
-      </div>
-    </div>
-  </div>
-                                        <% } %> 
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
+                        <form class="user" action="/addClient" method="POST">
+                            <div class="form-group row">
+                                <div class="col-sm-6 mb-3 mb-sm-0">
+                                    <label for="matricule">Nom</label>
+                                    <input type="text" class="form-control form-control-user" id="nom" name="nom"
+                                        placeholder="nom" required>
+                                </div>
+                                <div class="col-sm-6 mb-3 mb-sm-0">
+                                    <label for="année">Prenom</label>
+                                    <input type="text" class="form-control form-control-user" id="prenom" name="prenom"
+                                        placeholder="prenom" required>
+                                </div>
+                                <div class="col-sm-6 mb-3 mb-sm-0">
+                                    <label for="carburant">CIN</label>
+                                    <input type="text" class="form-control form-control-user" id="cin" name="cin"
+                                        placeholder="cin" required>
+                                </div>
+                                <div class="col-sm-6 mb-3 mb-sm-0">
+                                    <label for="carburant">Adresse</label>
+                                    <input type="text" class="form-control form-control-user" id="adresse" name="adresse"
+                                        placeholder="adresse" required>
+                                </div>
+                                <div class="col-sm-6 mb-3 mb-sm-0">
+                                    <label for="carburant">Tel</label>
+                                    <input type="text" class="form-control form-control-user" id="tel" name="tel"
+                                        placeholder="tel" required>
+                                </div>
+                            </div>
+                            <button class="btn btn-success btn-user btn-block">Ajouter utilisateur</button>
+                        </form>
                         
                         
                     </div>

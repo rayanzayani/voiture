@@ -24,7 +24,7 @@ const ClientSchema = new Schema({
   },
   tel: {
     type: String,
-    required: ture,
+    required: true,
   },
 });
 module.exports = Client = mongoose.model("Client", ClientSchema);

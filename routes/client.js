@@ -4,7 +4,7 @@ let clientsRoute = express.Router();
 const saltRounds = 10;
 
 clientsRoute.route("/clients").get((req, res) => {
-  User.find({}, function (err, clients) {
+  Client.find({}, function (err, clients) {
     res.render("clients", {
       clients: clients,
     });
@@ -25,6 +25,11 @@ clientsRoute.route("/addClient").post((req, res) => {
   } catch (err) {
     console.log("error!");
   }
+});
+clientsRoute.route("/ajouterClient").get((req, res) => {
+  Client.find({}, function (err, clients) {
+    res.render("ajouterClient");
+  });
 });
 
 /** mise à jour reservation **/
