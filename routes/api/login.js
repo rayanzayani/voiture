@@ -18,7 +18,7 @@ router.route("/login").post((req, res) => {
     password: req.body.password,
   }).then((user) => {
     if (user) {
-      res.render("/index");
+      res.render("index");
     } else {
       res.render("login");
     }
