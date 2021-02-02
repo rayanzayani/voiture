@@ -6,7 +6,14 @@ ObjectId.prototype.valueOf = function () {
   return this.toString();
 };
 const LocationSchema = new Schema({
-  client: { type: Schema.Types.ObjectId, ref: "Client" },
+  client: {
+    type: String,
+    required: true,
+  },
+  voiture: {
+    type: String,
+    required: true,
+  },
   dateDeb: {
     type: String,
     required: true,

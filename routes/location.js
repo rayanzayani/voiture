@@ -1,33 +1,42 @@
 var express = require("express");
 const Client = require("../models/Client");
 const Car = require("../models/Car");
+const Location = require("../models/Location");
 let locationsRoute = express.Router();
 
-locationsRoute.route("/users").get((req, res) => {
-  User.find({}, function (err, users) {
-    res.render("users", {
-      users: users,
+locationsRoute.route("/locations").get((req, res) => {
+  Location.find({}, function (err, locations) {
+    Client.find({}, function (err, clients) {
+      Car.find({}, function (err, cars) {
+        res.render("locations", {
+          cars: cars,
+          clients: clients,
+          locations: locations,
+        });
+      });
     });
   });
 });
-locationsRoute.route("/ajouterUser").get((req, res) => {
-  User.find({}, function (err, users) {
-    res.render("ajouterUser");
+locationsRoute.route("/ajouterLocation").get((req, res) => {
+  Client.find({}, function (err, clients) {
+    Car.find({}, function (err, cars) {
+      res.render("ajouterLocation", { cars: cars, clients: clients });
+    });
   });
 });
 
 /** Ajouter reservation **/
-locationsRoute.route("/addUser").post((req, res) => {
-  const newUser = new User({
-    nom: req.body.nom,
-    prenom: req.body.prenom,
-    email: req.body.email,
-    password: req.body.password,
+locationsRoute.route("/addLocation").post((req, res) => {
+  const newLocation = new Location({
+    dateDeb: req.body.dateDeb,
+    dateFin: req.body.dateFin,
+    voiture: req.body.voiture,
+    client: req.body.client,
   });
   try {
-    newUser.save().then(
+    newLocation.save().then(
       setTimeout(() => {
-        res.redirect("users");
+        res.redirect("locations");
       }, 2000)
     );
   } catch (err) {
@@ -36,13 +45,13 @@ locationsRoute.route("/addUser").post((req, res) => {
 });
 
 /** mise à jour reservation **/
-locationsRoute.route("/updateUser/:id").post(function (req, res) {
+locationsRoute.route("/updateLocation/:id").post(function (req, res) {
   let id = req.params.id;
-  User.findById(id, function (err, data) {
-    data.nom = req.body.nom;
-    data.prenom = req.body.prenom;
-    data.email = req.body.email;
-    data.password = req.body.password;
+  Location.findById(id, function (err, data) {
+    data.dateDeb = req.body.dateDeb;
+    data.dateFin = req.body.dateFin;
+    data.client = req.body.client;
+    data.car = req.body.car;
 
     try {
       data.save().then(res.redirect("back"));
@@ -52,9 +61,9 @@ locationsRoute.route("/updateUser/:id").post(function (req, res) {
   });
 });
 
-locationsRoute.get("/deleteUser/:id", function (req, res) {
-  User.findById(req.params.id, function (err, data) {
-    User.remove(
+locationsRoute.get("/deleteLocation/:id", function (req, res) {
+  Location.findById(req.params.id, function (err, data) {
+    Location.remove(
       {
         _id: req.params.id,
       },
