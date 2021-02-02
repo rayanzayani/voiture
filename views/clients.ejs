@@ -59,6 +59,7 @@
             </div>
 
             <!-- Nav Item - Pages Collapse Menu -->
+            <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                     aria-expanded="true" aria-controls="collapseTwo">
@@ -86,22 +87,38 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Opérations disponibles :</h6>
                         <a class="collapse-item" href="/ajouterUser">Ajouter utilisateur</a>
-                        <a class="collapse-item" href="/utilisateurs">Lister utilisateurs</a>
+                        <a class="collapse-item" href="/users">Lister utilisateurs</a>
                     </div>
                 </div>
             </li>
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-                    aria-expanded="true" aria-controls="collapseUtilities">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseClients"
+                    aria-expanded="true" aria-controls="collapseClients">
                     <i class="fas fa-fw fa-cog"></i>
                     <span>Gestion des clients</span>
                 </a>
-                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
+                <div id="collapseClients" class="collapse" aria-labelledby="headingClients"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Opérations disponibles :</h6>
                         <a class="collapse-item" href="/ajouterClient">Ajouter un client</a>
                         <a class="collapse-item" href="/clients">Lister clients</a>
+                    </div>
+                </div>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseRes"
+                    aria-expanded="true" aria-controls="collapseRes">
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>Gestion des locations</span>
+                </a>
+                <div id="collapseRes" class="collapse" aria-labelledby="headingRes"
+                    data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Opérations disponibles :</h6>
+                        <a class="collapse-item" href="/ajouterRes">Réserver une voiture</a>
+                        <a class="collapse-item" href="/reservations">Lister réservations</a>
                     </div>
                 </div>
             </li>
@@ -214,7 +231,6 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
                                 <img class="img-profile rounded-circle"
                                     src="img/undraw_profile.svg">
                             </a>

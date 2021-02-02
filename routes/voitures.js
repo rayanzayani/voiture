@@ -26,7 +26,7 @@ carsRoute.route("/addCar").post((req, res) => {
     carburant: req.body.carburant,
   });
   try {
-    newCar.save();
+    newCar.save().then(res.redirect("cars"));
   } catch (err) {
     console.log("error!");
   }

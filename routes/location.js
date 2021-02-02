@@ -1,23 +1,23 @@
 var express = require("express");
-const User = require("../models/User");
-let usersRoute = express.Router();
-const saltRounds = 10;
+const Client = require("../models/Client");
+const Car = require("../models/Car");
+let locationsRoute = express.Router();
 
-usersRoute.route("/users").get((req, res) => {
+locationsRoute.route("/users").get((req, res) => {
   User.find({}, function (err, users) {
     res.render("users", {
       users: users,
     });
   });
 });
-usersRoute.route("/ajouterUser").get((req, res) => {
+locationsRoute.route("/ajouterUser").get((req, res) => {
   User.find({}, function (err, users) {
     res.render("ajouterUser");
   });
 });
 
 /** Ajouter reservation **/
-usersRoute.route("/addUser").post((req, res) => {
+locationsRoute.route("/addUser").post((req, res) => {
   const newUser = new User({
     nom: req.body.nom,
     prenom: req.body.prenom,
@@ -36,7 +36,7 @@ usersRoute.route("/addUser").post((req, res) => {
 });
 
 /** mise à jour reservation **/
-usersRoute.route("/updateUser/:id").post(function (req, res) {
+locationsRoute.route("/updateUser/:id").post(function (req, res) {
   let id = req.params.id;
   User.findById(id, function (err, data) {
     data.nom = req.body.nom;
@@ -52,7 +52,7 @@ usersRoute.route("/updateUser/:id").post(function (req, res) {
   });
 });
 
-usersRoute.get("/deleteUser/:id", function (req, res) {
+locationsRoute.get("/deleteUser/:id", function (req, res) {
   User.findById(req.params.id, function (err, data) {
     User.remove(
       {
@@ -65,4 +65,4 @@ usersRoute.get("/deleteUser/:id", function (req, res) {
   });
 });
 
-module.exports = usersRoute;
+module.exports = locationsRoute;

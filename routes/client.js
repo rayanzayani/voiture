@@ -21,7 +21,11 @@ clientsRoute.route("/addClient").post((req, res) => {
     tel: req.body.tel,
   });
   try {
-    newClient.save();
+    newClient.save().then(
+      setTimeout(() => {
+        res.redirect("clients");
+      }, 2000)
+    );
   } catch (err) {
     console.log("error!");
   }
