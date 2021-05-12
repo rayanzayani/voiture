@@ -19,6 +19,8 @@ clientsRoute.route("/addClient").post((req, res) => {
     cin: req.body.cin,
     adresse: req.body.adresse,
     tel: req.body.tel,
+    email: req.body.email,
+    password: req.body.password,
   });
   try {
     newClient.save().then(
@@ -45,6 +47,8 @@ clientsRoute.route("/updateClient/:id").post(function (req, res) {
     data.cin = req.body.cin;
     data.adresse = req.body.adresse;
     data.tel = req.body.tel;
+    data.email = req.body.email;
+    data.password = req.body.password;
 
     try {
       data.save().then(res.redirect("back"));

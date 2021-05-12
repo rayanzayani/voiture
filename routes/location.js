@@ -8,10 +8,11 @@ locationsRoute.route("/locations").get((req, res) => {
   Location.find({}, function (err, locations) {
     Client.find({}, function (err, clients) {
       Car.find({}, function (err, cars) {
+        console.log(locations);
         res.render("locations", {
+          locations: locations,
           cars: cars,
           clients: clients,
-          locations: locations,
         });
       });
     });
@@ -31,7 +32,7 @@ locationsRoute.route("/addLocation").post((req, res) => {
     dateDeb: req.body.dateDeb,
     dateFin: req.body.dateFin,
     voiture: req.body.voiture,
-    client: req.body.client,
+    email: req.body.email,
   });
   try {
     newLocation.save().then(
@@ -50,7 +51,7 @@ locationsRoute.route("/updateLocation/:id").post(function (req, res) {
   Location.findById(id, function (err, data) {
     data.dateDeb = req.body.dateDeb;
     data.dateFin = req.body.dateFin;
-    data.client = req.body.client;
+    data.email = req.body.email;
     data.car = req.body.car;
 
     try {

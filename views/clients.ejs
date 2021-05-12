@@ -278,6 +278,8 @@
                                         <th>CIN</th>
                                         <th>Adresse</th>
                                         <th>Tél</th>
+                                        <th>Email</th>
+                                        <th>Mot de passe</th>
                                         <th>Modifier</th>
                                         <th>Supprimer</th>
                                     </tr>
@@ -291,6 +293,8 @@
                                             <td ><%= clients[i].cin %> </td>
                                             <td ><%= clients[i].adresse %> </td>
                                             <td ><%= clients[i].tel %> </td>
+                                            <td ><%= clients[i].email %> </td>
+                                            <td ><%= clients[i].password %> </td>
                                             <td ><button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalUpdate<%= i %>">Update</button> </td>
                                             <td ><a class="btn btn-danger" href="/deleteClient/<%=clients[i]._id  %> ">Supprimer</a> </td>
                                         </tr>
@@ -330,6 +334,16 @@
                         <label for="carburant">Tél</label>
                         <input type="text" class="form-control form-control-user" id="tel" name="tel" value="<%= clients[i].tel %> "
                             placeholder="tel" required>
+                    </div>
+                    <div class="col-sm-6 mb-3 mb-sm-0">
+                        <label for="carburant">Email</label>
+                        <input type="text" class="form-control form-control-user" id="email" name="email" value="<%= clients[i].email %> "
+                            placeholder="email" required>
+                    </div>
+                    <div class="col-sm-6 mb-3 mb-sm-0">
+                        <label for="carburant">Mot de passe</label>
+                        <input type="password" class="form-control form-control-user" id="password" name="password" value="<%= clients[i].password %> "
+                            placeholder="mot de passe" required>
                     </div>
                 </div>
                 <button class="btn btn-success btn-user btn-block">Mettre à jour client</button>

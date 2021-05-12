@@ -126,45 +126,6 @@
             <!-- Divider -->
             <hr class="sidebar-divider">
 
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                Addons
-            </div>
-
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
-                    aria-expanded="true" aria-controls="collapsePages">
-                    <i class="fas fa-fw fa-folder"></i>
-                    <span>Pages</span>
-                </a>
-                <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Login Screens:</h6>
-                        <a class="collapse-item" href="login.html">Login</a>
-                        <a class="collapse-item" href="register.html">Register</a>
-                        <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
-                        <div class="collapse-divider"></div>
-                        <h6 class="collapse-header">Other Pages:</h6>
-                        <a class="collapse-item" href="404.html">404 Page</a>
-                        <a class="collapse-item" href="blank.html">Blank Page</a>
-                    </div>
-                </div>
-            </li>
-
-            <!-- Nav Item - Charts -->
-            <li class="nav-item">
-                <a class="nav-link" href="charts.html">
-                    <i class="fas fa-fw fa-chart-area"></i>
-                    <span>Charts</span></a>
-            </li>
-
-            <!-- Nav Item - Tables -->
-            <li class="nav-item">
-                <a class="nav-link" href="tables.html">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>Tables</span></a>
-            </li>
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
@@ -287,10 +248,10 @@
                                             <td hidden><%= locations[i]._id %> </td>
                                             <td ><%= locations[i].dateDeb %> </td>
                                             <td ><%= locations[i].dateFin %> </td>
-                                            <td ><%= locations[i].client %> </td>
+                                            <td ><%= locations[i].email %> </td>
                                             <td ><%= locations[i].voiture %> </td> 
                                             <td ><button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalUpdate<%= i %>">Update</button> </td>
-                                            <td ><a class="btn btn-danger" href="/deleteLocation/<%=locations[i]._id  %> ">Supprimer</a> </td>
+                                            <td ><a class="btn btn-danger" href="/deleteLocation/<%=locations[i]._id  %>">Supprimer</a> </td>
                                         </tr>
 
                                            <!-- Modal modification -->
@@ -302,11 +263,11 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-            <form class="user" action="/updateLocation/<%= locations[i]._id %> " method="POST">
+            <form class="user" action="/updateLocation/<%= locations[i]._id %>" method="POST">
                 <div class="form-group row">
                     <div class="col-sm-6 mb-3 mb-sm-0">
                         <label for="matricule">date début</label>
-                        <input type="date" class="form-control form-control-user" id="dateDeb" name="dateDeb" value="<%= locations[i].dateDeb %> "
+                        <input type="date" class="form-control form-control-user" id="dateDeb" name="dateDeb" value="<%= locations[i].dateDeb %>"
                             placeholder="dateDeb" required>
                     </div>
                     <div class="col-sm-6 mb-3 mb-sm-0">
@@ -319,16 +280,16 @@
                                     <select name="client" id="client" class="form-control" required>
                                         <% for(var i=0; i<clients.length;i++) { %>
 
-                                        <option value="<%= clients[i].prenom %> "><%= clients[i].prenom %> </option>
+                                        <option value="<%= clients[i].email %>"><%= clients[i].email %></option>
                                         <% } %>
-                                      </select>
+                                    </select>
                     </div>
                     <div class="col-sm-6 mb-3 mb-sm-0">
                         <label for="carburant">voiture</label>
                         <select name="voiture" id="voiture" class="form-control" required>
                             <% for(var i=0; i<cars.length;i++) { %>
 
-                            <option value="<%= cars[i].matricule %> "><%= cars[i].matricule %> </option>
+                            <option value="<%= cars[i].matricule %>"><%= cars[i].matricule %></option>
                             <% } %>
                           </select>
                     </div>

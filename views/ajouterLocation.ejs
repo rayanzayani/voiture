@@ -281,10 +281,10 @@
                                 </div>
                                 <div class="col-sm-6 mb-3 mb-sm-0">
                                     <label for="client">Client</label>
-                                    <select name="client" id="client" class="form-control" required>
+                                    <select name="email" id="email" class="form-control" required>
                                         <% for(var i=0; i<clients.length;i++) { %>
 
-                                        <option value="<%= clients[i].prenom %> "><%= clients[i].prenom %> </option>
+                                        <option value="<%= clients[i].email %>"><%= clients[i].email %> </option>
                                         <% } %>
                                       </select>
                                 </div>
@@ -293,7 +293,7 @@
                                     <select name="voiture" id="voiture" class="form-control" required>
                                         <% for(var i=0; i<cars.length;i++) { %>
 
-                                        <option value="<%= cars[i].matricule %> "><%= cars[i].matricule %> </option>
+                                        <option value="<%= cars[i].matricule %>"><%= cars[i].matricule %> </option>
                                         <% } %>
                                       </select>
                                 </div>

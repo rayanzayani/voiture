@@ -6,7 +6,7 @@ ObjectId.prototype.valueOf = function () {
   return this.toString();
 };
 const LocationSchema = new Schema({
-  client: {
+  email: {
     type: String,
     required: true,
   },
