@@ -60,9 +60,11 @@ router.get("/dashboard", (req, res) => {
 });
 router.get("/logout/", (req, res) => {
   res.render("login");
-  // res.status(200).send({
-  //   token: null,
-  // });
+});
+router.get("/logoutCustomer/", (req, res) => {
+  res.clearCookie("userID");
+  res.clearCookie("userEmail");
+  res.render("customerLogin");
 });
 
 router.post("/logout/", (req, res) => {

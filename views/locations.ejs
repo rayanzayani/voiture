@@ -111,7 +111,7 @@
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseRes"
                     aria-expanded="true" aria-controls="collapseRes">
                     <i class="fas fa-fw fa-cog"></i>
-                    <span>Gestion des locations</span>
+                    <span>Gestion des reservations</span>
                 </a>
                 <div id="collapseRes" class="collapse" aria-labelledby="headingRes"
                     data-parent="#accordionSidebar">
@@ -277,21 +277,13 @@
                     </div>
                     <div class="col-sm-6 mb-3 mb-sm-0">
                         <label for="carburant">client</label>
-                                    <select name="client" id="client" class="form-control" required>
-                                        <% for(var i=0; i<clients.length;i++) { %>
-
-                                        <option value="<%= clients[i].email %>"><%= clients[i].email %></option>
-                                        <% } %>
-                                    </select>
+                        <input type="email" class="form-control form-control-user" id="email" name="email" value="<%=locations[i].email  %>"
+                        placeholder="date fin" required>
                     </div>
                     <div class="col-sm-6 mb-3 mb-sm-0">
                         <label for="carburant">voiture</label>
-                        <select name="voiture" id="voiture" class="form-control" required>
-                            <% for(var i=0; i<cars.length;i++) { %>
-
-                            <option value="<%= cars[i].matricule %>"><%= cars[i].matricule %></option>
-                            <% } %>
-                          </select>
+                        <input type="text" class="form-control form-control-user" id="car" name="car" value="<%=locations[i].voiture  %>"
+                            placeholder="date fin" required>
                     </div>
                 </div>
                 <button class="btn btn-success btn-user btn-block">Mettre à jour location</button>

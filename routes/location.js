@@ -5,19 +5,15 @@ const Location = require("../models/Location");
 let locationsRoute = express.Router();
 
 locationsRoute.route("/locations").get((req, res) => {
-  Location.find({}, function (err, locations) {
-    Client.find({}, function (err, clients) {
-      Car.find({}, function (err, cars) {
-        console.log(locations);
-        res.render("locations", {
-          locations: locations,
-          cars: cars,
-          clients: clients,
-        });
-      });
+  Location.find({},function(err,locations){
+    res.render("locations", {
+      locations: locations,
     });
   });
 });
+
+
+
 locationsRoute.route("/ajouterLocation").get((req, res) => {
   Client.find({}, function (err, clients) {
     Car.find({}, function (err, cars) {
@@ -52,7 +48,7 @@ locationsRoute.route("/updateLocation/:id").post(function (req, res) {
     data.dateDeb = req.body.dateDeb;
     data.dateFin = req.body.dateFin;
     data.email = req.body.email;
-    data.car = req.body.car;
+    data.voiture = req.body.car;
 
     try {
       data.save().then(res.redirect("back"));
